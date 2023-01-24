@@ -101,19 +101,36 @@
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
-DROP TABLE IF EXISTS movies
-DROP TABLE IF EXISTS studios
-DROP TABLE IF EXISTS cast
-DROP TABLE IF EXISTS movies_cast
+DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS studios;
+DROP TABLE IF EXISTS cast;
+DROP TABLE IF EXISTS movies_cast;
+
+CREATE TABLE studios (
+    id INTEGER PRIMARY KEY AUTOINCREMENT
+    , studio_name TEXT
+);
 
 CREATE TABLE movies (
     id INTEGER PRIMARY KEY AUTOINCREMENT
     , title TEXT
     , year_released INTEGER
     , mpaa_rating TEXT
-    , FOREIGN KEY (studio_id) REFERENCES studios(id)
+    , FOREIGN KEY(studio_id) REFERENCES studios(id)
+);
 
-)
+CREATE TABLE cast (
+    id INTEGER PRIMARY KEY AUTOINCREMENT
+    , fname
+    , lname
+);
+
+CREATE TABLE movies_cast (
+    id INTEGER PRIMARY KEY AUTOINCREMENT
+    , FOREIGN KEY(movie_id) REFERENCES movies(id)
+    , FOREIGN KEY(cast_id) REFERENCES cast(id)
+    , character_name TEXT
+);
 
 
 -- Create new tables, according to your domain model
