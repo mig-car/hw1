@@ -17,10 +17,10 @@
 -- User stories
 --
 -- - As a guest, I want to see a list of movies with the title, year released,
---   MPAA rating, and studio information.
--- - As a guest, I want to see the movies which a single studio has produced.
+--   MPAA rating, and studio information. OK
+-- - As a guest, I want to see the movies which a single studio has produced. OK
 -- - As a guest, I want to see each movie's cast including each actor's
---   name and the name of the character they portray.
+--   name and the name of the character they portray. OK
 -- - As a guest, I want to see the movies which a single actor has acted in.
 -- * Note: The "guest" user role represents the experience prior to logging-in
 --   to an app and typically does not have a corresponding database table.
@@ -101,6 +101,20 @@
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
+DROP TABLE IF EXISTS movies
+DROP TABLE IF EXISTS studios
+DROP TABLE IF EXISTS cast
+DROP TABLE IF EXISTS movies_cast
+
+CREATE TABLE movies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT
+    , title TEXT
+    , year_released INTEGER
+    , mpaa_rating TEXT
+    , FOREIGN KEY (studio_id) REFERENCES studios(id)
+
+)
+
 
 -- Create new tables, according to your domain model
 -- TODO!
