@@ -144,6 +144,48 @@ CREATE TABLE movies_cast (
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
 
+INSERT INTO studios (studio_name)
+VALUES ("Warner Bros.");            -- 1
+
+INSERT INTO cast (fname, lname)
+VALUES
+    ("Christian", "Bale")           -- 1
+    , ("Michael", "Caine")          -- 2
+    , ("Liam", "Neeson")            -- 3
+    , ("Katie", "Holmes")           -- 4
+    , ("Gary", "Oldman")            -- 5
+    , ("Heath", "Ledger")           -- 6
+    , ("Aaron", "Eckhart")          -- 7
+    , ("Maggie", "Gyllenhaal")      -- 8
+    , ("Tom", "Hardy")              -- 9
+    , ("Joseph", "Gordon-Levitt")   -- 10
+    , ("Anne", "Hathaway");         -- 11
+
+INSERT INTO movies (title, year_released, mpaa_rating, studio_id)
+VALUES
+    ("Batman Begins", 2005, "PG-13", (select id from studios where studio_name="Warner Bros."))             -- 1
+    , ("The Dark Knight", 2008, "PG-13", 1)         -- 2
+    , ("The Dark Knight Rises", 2012, "PG-13", 1);  -- 3
+
+INSERT INTO movies_cast (movie_id, cast_id, character_name)
+VALUES
+    (1, 1, "Bruce Wayne")
+    , (1, 2, "Alfred")
+    , (1, 3, "Ra's Al Ghul")
+    , (1, 4, "Rachel Dawes")
+    , (1, 5, "Commissioner Gordon")
+
+    , (2, 1, "Bruce Wayne")
+    , (2, 6, "Joker")
+    , (2, 7, "Harvey Dent")
+    , (2, 2, "Alfred")
+    , (2, 4, "Rachel Dawes")
+
+    , (3, 1, "Bruce Wayne")
+    , (3, 5, "Commissioner Gordon")
+    , (3, 9, "Bane")
+    , (3, 10, "John Blake")
+    , (3, 11, "Selina Kyle");
 
 
 -- Prints a header for the movies output
@@ -154,6 +196,17 @@ CREATE TABLE movies_cast (
 -- The SQL statement for the movies output
 -- TODO!
 
+SELECT m.title
+, m.year_released
+, m.mpaa_rating
+, s.studio_name
+
+FROM movies m 
+INNER JOIN studios s
+ON m.studio_id = s.id
+
+WHERE 1=1;
+
 -- Prints a header for the cast output
 .print ""
 .print "Top Cast"
@@ -163,3 +216,6 @@ CREATE TABLE movies_cast (
 
 -- The SQL statement for the cast output
 -- TODO!
+
+--SELECT 
+
