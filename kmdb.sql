@@ -99,6 +99,9 @@
 .mode column
 .headers off
 
+-- Added manual width setting because text was getting truncated.
+.width 25 25 25
+
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
 
