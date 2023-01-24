@@ -101,6 +101,7 @@
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
+
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS studios;
 DROP TABLE IF EXISTS cast;
@@ -111,36 +112,39 @@ DROP TABLE IF EXISTS movies_cast;
 
 
 CREATE TABLE studios (
-    id INTEGER PRIMARY KEY AUTOINCREMENT
-    , studio_name TEXT
+    id                  INTEGER PRIMARY KEY AUTOINCREMENT
+    , studio_name       TEXT
 );
 
 CREATE TABLE movies (
-    id INTEGER PRIMARY KEY AUTOINCREMENT
-    , title TEXT
-    , year_released INTEGER
-    , mpaa_rating TEXT
-    , FOREIGN KEY(studio_id) REFERENCES studios(id)
+    id                  INTEGER PRIMARY KEY AUTOINCREMENT
+    , title             TEXT
+    , year_released     INTEGER
+    , mpaa_rating       TEXT
+    , studio_id         INTEGER
+    , FOREIGN KEY(studio_id)   REFERENCES studios(id)
 );
 
 CREATE TABLE cast (
-    id INTEGER PRIMARY KEY AUTOINCREMENT
-    , fname
-    , lname
+    id                  INTEGER PRIMARY KEY AUTOINCREMENT
+    , fname             TEXT
+    , lname             TEXT
 );
 
 CREATE TABLE movies_cast (
-    id INTEGER PRIMARY KEY AUTOINCREMENT
-    , FOREIGN KEY(movie_id) REFERENCES movies(id)
-    , FOREIGN KEY(cast_id) REFERENCES cast(id)
-    , character_name TEXT
+    id                          INTEGER PRIMARY KEY AUTOINCREMENT
+    , movie_id                  INTEGER
+    , cast_id                   INTEGER
+    , character_name            TEXT
+    , FOREIGN KEY(movie_id)     REFERENCES movies(id)
+    , FOREIGN KEY(cast_id)      REFERENCES cast(id)
 );
-
-
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
+
+
 
 -- Prints a header for the movies output
 .print "Movies"
