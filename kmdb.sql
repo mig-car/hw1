@@ -217,5 +217,14 @@ WHERE 1=1;
 -- The SQL statement for the cast output
 -- TODO!
 
---SELECT 
+SELECT m.title
+, c.fname || " " || c.lname
+, mc.character_name
+
+FROM movies_cast mc
+INNER JOIN movies m ON mc.movie_id = m.id
+INNER JOIN cast c ON mc.cast_id = c.id
+
+WHERE 1=1
+ORDER BY m.id, c.id ASC;
 
