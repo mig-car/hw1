@@ -182,7 +182,7 @@ VALUES
     , (2, 6, "Joker")
     , (2, 7, "Harvey Dent")
     , (2, 2, "Alfred")
-    , (2, 4, "Rachel Dawes")
+    , (2, 8, "Rachel Dawes")
 
     , (3, 1, "Bruce Wayne")
     , (3, 5, "Commissioner Gordon")
@@ -229,5 +229,5 @@ INNER JOIN movies m ON mc.movie_id = m.id
 INNER JOIN cast c ON mc.cast_id = c.id
 
 WHERE 1=1
-ORDER BY m.id, c.id ASC;
+ORDER BY m.id ASC;
 
